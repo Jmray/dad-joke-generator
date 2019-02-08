@@ -15,7 +15,7 @@ class App extends Component {
 
     this.state = {
       joke: {},
-      favoriteJokeID: [],
+      favJokes: [],
 
 
     }
@@ -31,10 +31,10 @@ class App extends Component {
       <div className="App">
       <Header/>
         <h3>{this.state.joke.joke}</h3>
-        {this.state.favoriteJokeID}
+        {this.state.favJokes}
         <button onClick={() => this.handlefavorite()}>favorite</button>
         <button onClick={() => this.generateJoke()}>generate joke</button>
-        <FavoriteJokes favoriteJokesID={this.state.favoriteJokeID}/>
+        <FavoriteJokes favJokes={this.state.favJokes}/>
         
       </div>
     );
@@ -44,10 +44,10 @@ class App extends Component {
     .then(res => this.setState({joke: res.data}))
   }
   handlefavorite(){
-    const {favoriteJokeID} = this.state;
-    favoriteJokeID.push(this.state.joke.id);
-    this.setState({favoriteJokeID,});
-    console.log(this.state.favoriteJokeID)
+    const {favJokes} = this.state;
+    favJokes.push(this.state.joke);
+    this.setState({favJokes,});
+    
   }
 }
 

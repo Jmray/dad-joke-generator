@@ -12,30 +12,30 @@ class FavoriteJokes extends Component{
         }
     }
     componentWillReceiveProps(props){
-        Promise.all(this.props.favoriteJokesID.map(jokeID => (
-            axios.get('https://icanhazdadjoke.com/j/' + {jokeID}, { headers: { 'Accept' : 'application/json' } })
-            .then(res => res.data)
-        )))
-        .then(favoriteJokes => (
-            this.setState({
-                favoriteJokes,
-            })
-        ))
+        console.log(props)
+        const favoriteJoke = props.favJokes;
+        this.setState({favoriteJokes: favoriteJoke,})
+        
 
         }
+        
     
     render(){
         const favoriteJokes = this.state.favoriteJokes
         .map(joke => (
             <div key={joke.id}>
-                <h3>{joke.joke}</h3>
+            <h3>{joke.joke}</h3>
             </div>
         ))
+        
+       
+        
 
         return(
             <div>
+                
                 {favoriteJokes}
-                <p>{this.props.favoriteJokesID}</p>
+                
             </div>
         )
     }
