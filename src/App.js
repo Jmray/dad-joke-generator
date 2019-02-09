@@ -4,6 +4,8 @@ import './App.css';
 import Header from './components/Header/Header';
 import FavoriteJokes from './components/FavoriteJokes/FavoriteJokes';
 import axios from 'axios';
+import JokeCard from './components/JokeCard/JokeCard';
+import FavButton from './components/Buttons/FavButton';
 
 
 
@@ -56,8 +58,8 @@ class App extends Component {
     return (
       <div className="App">
       <Header/>
-        <h3>{this.state.joke.joke}</h3>
-        <button disabled={this.state.alreadyAdded} onClick={() => this.handlefavorite(this.state.joke)}>favorite</button>
+        <JokeCard joke={this.state.joke} button={<FavButton favJoke={this.handlefavorite} joke={this.state.joke} alreadyAdded={this.state.alreadyAdded} />}/>
+        
         <button onClick={() => this.generateJoke()}>generate joke</button>
         <FavoriteJokes unFavJoke={this.handleUnfavorite} favJokes={this.state.favJokes}/>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import App from '../../App';
 import axios from 'axios';
+import UnFavButton from '../Buttons/UnFavButton';
 
 class FavoriteJokes extends Component{
 
@@ -12,16 +13,16 @@ class FavoriteJokes extends Component{
         }
     }
     componentWillReceiveProps(props){
-        const favoriteJoke = props.favJokes;
-        this.setState({favoriteJokes: favoriteJoke})
+        const favoriteJokes = props.favJokes;
+        this.setState({favoriteJokes,})
     }
 
     favoriteJokes = () => {
         return this.state.favoriteJokes.map(joke => {
             return (
                 <div key={joke.id}>
-                    <h3>{joke.joke}</h3>
-                    <button onClick={() => this.props.unFavJoke(joke.id)}>Unfavorite</button>
+                    <h3>{joke.joke}<UnFavButton joke={joke} unFavJoke={this.props.unFavJoke} /></h3>
+                    
                 </div>
             )
         })
