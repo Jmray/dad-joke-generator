@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import JokeCard from '../JokeCard/JokeCard';
 import FavButton from '../Buttons/FavButton';
+import '../../App.css';
+
 
 export default function(props){
     return(
-        <div>
+        <div className='jokeGenContainer'>
             <Header 
-                header={'Dad joke Gen'}
+                header={'Dad Joke Generator'}
             />
-            <JokeCard 
+            <JokeCard  className="jokeCard"
                 joke={props.joke} 
                 button={props.button}
             />

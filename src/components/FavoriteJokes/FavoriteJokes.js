@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import App from '../../App';
-import axios from 'axios';
+import '../../App.css';
 import UnFavButton from '../Buttons/UnFavButton';
 import JokeCard from '../JokeCard/JokeCard';
 import Header from '../Header/Header';

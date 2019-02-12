@@ -14,6 +14,7 @@ class App extends Component {
     super();
 
     this.state = {
+      textColor: {},
       joke: {},
       favJokes: [],
       alreadyAdded: false
@@ -24,7 +25,7 @@ class App extends Component {
     this.generateJoke();
 
     axios.get('http://localhost:5000/api/favjokes').then(res => {
-      this.setState({favJokes: res.data});
+      this.setState({favJokes: res.data.favAndColor.favorites, textColor: res.data.favAndColor.textColor});
     });
   
   }
@@ -38,6 +39,11 @@ class App extends Component {
     })
 
   }
+  handleColorChange(color){
+    axios.put('http://localhost:5000/api/textcolor', {color,}).then(res => {
+      this.setState({textColor: res.data})
+    })
+  }
 
   
  
@@ -50,21 +56,27 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-      <JokeGenerator
-          joke={this.state.joke}
-          generateJoke={() => this.generateJoke()} 
-          button={<FavButton 
-            onAdd={(favJokes) => this.addToFavorites(favJokes)} 
-            joke={this.state.joke} 
-            alreadyAdded={this.state.alreadyAdded} />}  
-      />
-      <FavoriteJokes className="jokeCard" 
-          onRemoveFav={(favJokes, alreadyAdded) => this.removeFromFavorites(favJokes, alreadyAdded)} 
-          alreadyAdded={this.state.alreadyAdded}
-          favJokes={this.state.favJokes}
-      />
-        
+      <div className='fullPage'>
+      <div className="mainContainer" style={this.state.textColor}>
+        <JokeGenerator className='jokeGenContainer'
+            joke={this.state.joke}
+            generateJoke={() => this.generateJoke()} 
+            button={<FavButton 
+              onAdd={(favJokes) => this.addToFavorites(favJokes)} 
+              joke={this.state.joke} 
+              alreadyAdded={this.state.alreadyAdded} />}  
+        />
+        <FavoriteJokes className='favoriteJokesContainer'
+            onRemoveFav={(favJokes, alreadyAdded) => this.removeFromFavorites(favJokes, alreadyAdded)} 
+            alreadyAdded={this.state.alreadyAdded}
+            favJokes={this.state.favJokes}
+        />
+        <input 
+            className='colorChange'  
+            type='color' 
+            onChange={(event => this.handleColorChange(event.target.value))}
+        />
+      </div>
       </div>
     );
   }

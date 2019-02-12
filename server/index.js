@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = express();
 
 const favorites = [];
+let textColor = {color: "#000000"};
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -12,7 +13,8 @@ app.use(bodyParser.json());
 
 
 app.get('/api/favjokes', (req, res) => {
-    res.send(favorites);
+    const favAndColor = {favorites, textColor} 
+    res.send({favAndColor});
 })
 app.post('/api/favjokes', (req, res) => {
     const {joke} = req.body;
@@ -30,6 +32,12 @@ app.delete('/api/favjokes/:id', (req, res) => {
     
     favorites.splice(favoriteIndex, 1);
     res.send(favorites);
+})
+
+app.put('/api/textcolor', (req, res) => {
+    textColor = req.body;
+    res.send(textColor);
+
 })
 
 
