@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import App from '../../App';
 import axios from 'axios';
 import UnFavButton from '../Buttons/UnFavButton';
+import JokeCard from '../JokeCard/JokeCard';
+import Header from '../Header/Header';
 
 class FavoriteJokes extends Component{
 
@@ -20,8 +22,10 @@ class FavoriteJokes extends Component{
     favoriteJokes = () => {
         return this.state.favoriteJokes.map(joke => {
             return (
+                
                 <div key={joke.id}>
-                    <h3>{joke.joke}<UnFavButton joke={joke} unFavJoke={this.props.unFavJoke} /></h3>
+                    <JokeCard className='jokeCard' joke={joke} button={<UnFavButton joke={joke} favJokes={this.state.favoriteJokes} unFavJoke={this.props.unFavJoke} />}/>
+
                     
                 </div>
             )
@@ -33,6 +37,9 @@ class FavoriteJokes extends Component{
         const mappedFavorites = this.favoriteJokes()
         return(
             <div>
+                
+                <Header header={'Favorite Jokes'}/>
+                
                 {mappedFavorites}
                 
                 

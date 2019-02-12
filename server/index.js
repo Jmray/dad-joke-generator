@@ -11,7 +11,9 @@ app.use(bodyParser.json());
 
 
 
-
+app.get('/api/favjokes', (req, res) => {
+    res.send(favorites);
+})
 app.post('/api/favjokes', (req, res) => {
     const {joke} = req.body;
     favorites.push(joke);
@@ -20,7 +22,13 @@ app.post('/api/favjokes', (req, res) => {
 })
 
 app.delete('/api/favjokes/:id', (req, res) => {
-    favorites.splice(favorites.indexOf(joke => joke.id === req.params.id), 1);
+    const favoriteIndex = favorites.findIndex(joke => joke.id === req.params.id);
+
+    if (favoriteIndex == -1) {
+        return res.status(404).send({ message: 'No favorite found with id of ' + req.params.id });
+    }
+    
+    favorites.splice(favoriteIndex, 1);
     res.send(favorites);
 })
 

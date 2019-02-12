@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function(){
+export default function(props){
     return(
-        <h1>Dad Joke Generator</h1>
+        <h1>{props.header}</h1>
     )
 }
