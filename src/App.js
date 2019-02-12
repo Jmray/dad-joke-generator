@@ -40,15 +40,10 @@ class App extends Component {
   }
 
   
-  handleUnfavorite = (jokeID) => {
-    axios.delete('http://localhost:5000/api/favJokes/' + jokeID)
-    .then(response => {
-      this.setState({favJokes: response.data});
-      if(response.data.findIndex(joke => joke.id === this.state.joke.id) === -1){
-        this.setState({alreadyAdded: false})}
-      });
+ 
+  removeFromFavorites(favJokes, alreadyAdded){
+    this.setState({favJokes, alreadyAdded});
   }
-  // removeFromFavorites()
   addToFavorites(favJokes){
     this.setState({favJokes, alreadyAdded: true});
   }
@@ -56,7 +51,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <JokeGenerator 
+      <JokeGenerator
           joke={this.state.joke}
           generateJoke={() => this.generateJoke()} 
           button={<FavButton 
@@ -64,7 +59,11 @@ class App extends Component {
             joke={this.state.joke} 
             alreadyAdded={this.state.alreadyAdded} />}  
       />
-        <FavoriteJokes className="jokeCard" unFavJoke={this.handleUnfavorite} favJokes={this.state.favJokes}/>
+      <FavoriteJokes className="jokeCard" 
+          onRemoveFav={(favJokes, alreadyAdded) => this.removeFromFavorites(favJokes, alreadyAdded)} 
+          alreadyAdded={this.state.alreadyAdded}
+          favJokes={this.state.favJokes}
+      />
         
       </div>
     );

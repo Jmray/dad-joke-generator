@@ -13,7 +13,7 @@ class FavButton extends Component{
         axios.post('http://localhost:5000/api/favjokes', {joke})
           .then(response => {
             
-            this.setState({favJokes: response.data, alreadyAdded: true});
+            // this.setState({favJokes: response.data, alreadyAdded: true});
             
             this.props.onAdd(response.data);
         });

@@ -24,7 +24,16 @@ class FavoriteJokes extends Component{
             return (
                 
                 <div key={joke.id}>
-                    <JokeCard className='jokeCard' joke={joke} button={<UnFavButton joke={joke} favJokes={this.state.favoriteJokes} unFavJoke={this.props.unFavJoke} />}/>
+                    <JokeCard className='jokeCard' 
+                        joke={joke} 
+                        button=
+                            {<UnFavButton 
+                                joke={joke} 
+                                favJokes={this.state.favoriteJokes} 
+                                onRemoveFav={this.props.onRemoveFav} 
+                                alreadyAdded={this.props.alreadyAdded}
+                            />}
+                    />
 
                     
                 </div>
