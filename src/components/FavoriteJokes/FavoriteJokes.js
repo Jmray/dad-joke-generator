@@ -45,12 +45,8 @@ class FavoriteJokes extends Component{
         const mappedFavorites = this.favoriteJokes()
         return(
             <div>
-                
                 <Header header={'Favorite Jokes'}/>
-                
                 {mappedFavorites}
-                
-                
             </div>
         )
     }

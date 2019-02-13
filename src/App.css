@@ -37,11 +37,15 @@
   
   position: flex;
   justify-content: center;
+
   width: 60vw;
-  min-height: 15vh;
+  min-height: 10vh;
+  
   margin: auto;
   margin-bottom: 1vh;
   border-radius: 3px;
+  font-size: 1.68vmax;
+
   
   background-color: lightblue;
 
@@ -59,10 +63,21 @@
 }
 .button{
   float: right;
+  font-size: 2vmax ;
   background-color: lightblue;
   border: none;
 }
 .button:hover{
   background-color: salmon;
   border-radius: 3px;
+}
+.generate{
+  border-radius: 3px;
+  background-color: salmon;
+  font-weight: bold;
+  border-top: none;
+  border-left: none;
+}
+.generate:hover{
+  background-color: darksalmon;
 }

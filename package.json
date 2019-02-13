@@ -19,7 +19,7 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "eqeqeq": false
+      "severity": 0
     }
   },
   "browserslist": [

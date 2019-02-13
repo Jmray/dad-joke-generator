@@ -64,18 +64,15 @@ class App extends Component {
             button={<FavButton 
               onAdd={(favJokes) => this.addToFavorites(favJokes)} 
               joke={this.state.joke} 
-              alreadyAdded={this.state.alreadyAdded} />}  
-        />
+              alreadyAdded={this.state.alreadyAdded} />}/>
         <FavoriteJokes className='favoriteJokesContainer'
             onRemoveFav={(favJokes, alreadyAdded) => this.removeFromFavorites(favJokes, alreadyAdded)} 
             alreadyAdded={this.state.alreadyAdded}
-            favJokes={this.state.favJokes}
-        />
+            favJokes={this.state.favJokes}/>
         <input 
             className='colorChange'  
             type='color' 
-            onChange={(event => this.handleColorChange(event.target.value))}
-        />
+            onChange={(event => this.handleColorChange(event.target.value))}/>
       </div>
       </div>
     );

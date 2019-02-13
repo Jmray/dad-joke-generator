@@ -26,7 +26,7 @@ app.post('/api/favjokes', (req, res) => {
 app.delete('/api/favjokes/:id', (req, res) => {
     const favoriteIndex = favorites.findIndex(joke => joke.id === req.params.id);
 
-    if (favoriteIndex == -1) {
+    if (favoriteIndex === -1) {
         return res.status(404).send({ message: 'No favorite found with id of ' + req.params.id });
     }
     
